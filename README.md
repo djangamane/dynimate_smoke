@@ -1,7 +1,7 @@
-# Dynimate Smoky
+# Dynamite Smoke, Vape & CBD
 
-Neon-inspired landing page for Dynimate Smoky, featuring a hero video and curated smoke + boutique
-sections.
+Neon-inspired landing page for Dynamite Smoke, Vape & CBD, featuring a hero video and a dedicated
+boutique route.
 
 ## Local preview
 - Open `index.html` directly in your browser.
@@ -16,6 +16,8 @@ sections.
 - Output directory: `./`
 
 ## Project structure
-- `index.html` Main layout and content.
-- `styles.css` Visual styling and layout.
+- `index.html` Main landing page.
+- `styles.css` Styles for the main landing page.
+- `boutique/index.html` Adult boutique route.
+- `boutique.css` Styles for the boutique page.
 - `dynimate_background.mp4` Hero + background video.

@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Dynimate Smoky</title>
+    <title>Dynamite Smoke, Vape & CBD</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -22,28 +22,24 @@
       <header class="topbar">
         <div class="brand">
           <div class="logo-ring" aria-hidden="true">
-            <svg viewBox="0 0 64 64" role="img">
-              <path
-                d="M32 8 L52 20 L56 36 L32 56 L8 36 L12 20 Z"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="4"
-              />
-              <circle cx="32" cy="32" r="8" fill="currentColor" />
-            </svg>
+            <img
+              class="brand-logo"
+              src="dynamite_smoke-Photoroom.png"
+              alt="Dynamite Smoke logo"
+            />
           </div>
           <div class="brand-copy">
-            <span class="brand-text">DYNIMATE</span>
-            <span class="brand-sub">Smoky</span>
+            <span class="brand-text">DYNAMITE</span>
+            <span class="brand-sub">Smoke, Vape &amp; CBD</span>
           </div>
         </div>
 
         <nav class="top-links" aria-label="Primary">
-          <a href="#">Smoke</a>
-          <a href="#">Glass</a>
-          <a href="#">Adult</a>
-          <a href="#">Find Us</a>
-          <a href="#">Shop Online</a>
+          <a href="#smoke">Smoke</a>
+          <a href="#vape">Vape</a>
+          <a href="#cbd">CBD</a>
+          <a href="boutique/">Boutique</a>
+          <a href="#find-us">Find Us</a>
         </nav>
 
         <div class="top-actions">
@@ -51,7 +47,7 @@
             <svg viewBox="0 0 24 24" aria-hidden="true">
               <path d="M12 3 20 9 12 21 4 9 12 3Z" fill="currentColor" />
             </svg>
-            Dynimate Smoky
+            Dynamite Smoke
           </div>
           <button class="icon-btn" type="button" aria-label="Rewards wheel">
             <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -78,7 +74,7 @@
             </svg>
           </button>
           <div class="top-search">
-            <input type="search" placeholder="Search smoke + boutique" aria-label="Search" />
+            <input type="search" placeholder="Search smoke, vape, CBD" aria-label="Search" />
             <svg viewBox="0 0 24 24" aria-hidden="true">
               <path
                 d="M10.5 4a6.5 6.5 0 1 1 0 13 6.5 6.5 0 0 1 0-13Zm0 2a4.5 4.5 0 1 0 0 9 4.5 4.5 0 0 0 0-9Zm6.3 10.9 3.3 3.3-1.4 1.4-3.3-3.3 1.4-1.4Z"
@@ -90,102 +86,126 @@
         </div>
       </header>
 
-      <section class="hero-stage">
-        <div class="stage-video reveal" style="--delay: 0.08s">
+      <section class="hero-spotlight">
+        <div class="hero-video-wrap reveal" style="--delay: 0.05s">
           <video class="hero-video" autoplay muted loop playsinline>
             <source src="dynimate_background.mp4" type="video/mp4" />
           </video>
-        </div>
-        <div class="stage-content">
-          <p class="hero-kicker reveal">ELEVATE YOUR HAZE</p>
-          <h1 class="headline reveal" style="--delay: 0.06s">DYNIMATE SMOKY</h1>
-          <p class="hero-copy reveal" style="--delay: 0.12s">
-            Premium smoking accessories, artisan glassware, and adult lifestyle essentials curated
-            for the modern enthusiast.
-          </p>
-          <div class="hero-actions reveal" style="--delay: 0.18s">
-            <button class="cta" type="button">Explore Gear</button>
-            <button class="cta ghost" type="button">Enter Boutique</button>
-          </div>
-          <div class="hero-meta reveal" style="--delay: 0.22s">
-            <div>
-              <span class="meta-label">Deals</span>
-              Come for the deals, stay for the free stuff!
-            </div>
-            <div>
-              <span class="meta-label">Hours</span>
-              Open Mon-Sat 11am-9pm
+          <div class="video-shade" aria-hidden="true"></div>
+          <svg class="smoke-svg" viewBox="0 0 1200 520" preserveAspectRatio="none" aria-hidden="true">
+            <defs>
+              <linearGradient id="smokeGrad" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#2ef2ff" stop-opacity="0.65" />
+                <stop offset="55%" stop-color="#ff4cd8" stop-opacity="0.7" />
+                <stop offset="100%" stop-color="#ffb347" stop-opacity="0.55" />
+              </linearGradient>
+            </defs>
+            <path
+              class="smoke-line line-a"
+              d="M-40 380 C 120 260, 250 420, 390 300 C 560 160, 680 290, 820 210 C 980 130, 1120 220, 1280 150"
+            />
+            <path
+              class="smoke-line line-b"
+              d="M-20 220 C 140 120, 260 220, 420 150 C 600 70, 760 190, 900 120 C 1040 60, 1160 130, 1320 90"
+            />
+            <path
+              class="smoke-line line-c"
+              d="M-60 280 C 120 340, 280 210, 420 300 C 590 400, 720 240, 880 320 C 1040 400, 1180 260, 1340 340"
+            />
+          </svg>
+          <div class="hero-overlay">
+            <div class="hero-card reveal" style="--delay: 0.14s">
+              <p class="hero-kicker">Come for the deals, stay for the free stuff.</p>
+              <h1 class="headline">Dynamite Smoke, Vape &amp; CBD</h1>
+              <p class="hero-copy">
+                Premium smoke gear, clean CBD, and next-level vape flavor curated for Beaumont's
+                modern smokers.
+              </p>
+              <div class="hero-actions">
+                <button class="cta" type="button">Shop Smoke</button>
+                <a class="cta ghost" href="boutique/">Pleasure Boutique</a>
+              </div>
+              <div class="hero-meta">
+                <div>
+                  <span class="meta-label">Rewards</span>
+                  Spin the wheel after 5 visits.
+                </div>
+                <div>
+                  <span class="meta-label">Hours</span>
+                  Mon-Sat 11am-9pm.
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section class="product-section">
+      <section class="lineup" id="lineup">
         <div class="section-header">
-          <h2 class="section-title reveal" style="--delay: 0.2s">The Essentials</h2>
-          <span class="section-sub">Smoke / Glass / Adult</span>
+          <h2 class="section-title">Smoke, Vape &amp; CBD</h2>
+          <p class="section-sub">Curated essentials for every session.</p>
         </div>
         <div class="product-grid">
-          <article class="product-card reveal" style="--delay: 0.25s">
-            <div class="product-img glow-1"></div>
-            <p>Roll &amp; Prep</p>
-            <span class="tag">Shop Now</span>
+          <article class="product-card" id="smoke">
+            <h3>Smoke</h3>
+            <p>Rolling papers, grinders, trays, and daily drivers that hit clean.</p>
+            <span class="tag">Glass + gear</span>
           </article>
-          <article class="product-card reveal" style="--delay: 0.3s">
-            <div class="product-img glow-2"></div>
-            <p>Artisan Glass</p>
-            <span class="tag">Shop Glass</span>
+          <article class="product-card" id="vape">
+            <h3>Vape</h3>
+            <p>Convection and concentrate devices with bold flavor and smooth pulls.</p>
+            <span class="tag">New tech</span>
           </article>
-          <article class="product-card reveal" style="--delay: 0.35s">
-            <div class="product-img glow-3"></div>
-            <p>Vaporizers</p>
-            <span class="tag">View Tech</span>
-          </article>
-        </div>
-      </section>
-
-      <section class="boutique-section">
-        <div class="section-header">
-          <h2 class="section-title reveal" style="--delay: 0.2s">The Pleasure Boutique</h2>
-          <span class="section-sub">Elevated sensual wellness</span>
-        </div>
-        <p class="section-copy reveal" style="--delay: 0.24s">
-          Explore our curated selection of high-end sensual wellness products. From body-safe
-          silicone toys to luxurious lubricants and bedroom accessories, we prioritize your
-          pleasure and privacy.
-        </p>
-        <div class="product-grid">
-          <article class="product-card reveal" style="--delay: 0.28s">
-            <div class="product-img glow-2"></div>
-            <p>Premium Vibrators &amp; Massagers</p>
-            <span class="tag">Intimate Gear</span>
-          </article>
-          <article class="product-card reveal" style="--delay: 0.32s">
-            <div class="product-img glow-1"></div>
-            <p>Sensual Wellness &amp; CBD Topicals</p>
+          <article class="product-card" id="cbd">
+            <h3>CBD</h3>
+            <p>Tinctures, gummies, and topicals sourced for calm, recovery, and focus.</p>
             <span class="tag">Wellness</span>
           </article>
-          <article class="product-card reveal" style="--delay: 0.36s">
-            <div class="product-img glow-3"></div>
-            <p>Elegant Intimate Apparel</p>
-            <span class="tag">Boutique</span>
+        </div>
+      </section>
+
+      <section class="feature-band">
+        <div class="feature-grid">
+          <article class="feature-card">
+            <h3>Daily deals</h3>
+            <p>Come for the deals, stay for the free stuff. Ask about weekly drops.</p>
+          </article>
+          <article class="feature-card">
+            <h3>Wheel rewards</h3>
+            <p>Hit your 5th visit and spin the wheel for a surprise.</p>
+          </article>
+          <article class="feature-card">
+            <h3>Community first</h3>
+            <p>Local artists, limited glass, and a team that knows the culture.</p>
           </article>
         </div>
       </section>
 
-      <section class="store-info">
-        <div class="store-card">
-          <h3>Dynimate Smoky</h3>
+      <section class="boutique-callout">
+        <div class="callout-card">
+          <div>
+            <h2>After Dark Boutique</h2>
+            <p>
+              Explore our adults-only selection of wellness, pleasure, and intimate essentials in a
+              discreet space.
+            </p>
+          </div>
+          <a class="cta" href="boutique/">Enter Boutique</a>
+        </div>
+      </section>
+
+      <section class="visit" id="find-us">
+        <div class="visit-card">
+          <h3>Find us in Beaumont</h3>
           <p>15151 US-90 Suite A, Beaumont, Texas 77713</p>
           <p>Open Mon-Sat 11am-9pm</p>
         </div>
-        <div class="store-card">
-          <h3>Come for the deals</h3>
-          <p>Stay for the free stuff. Spin the wheel after 5 visits and score a surprise.</p>
-          <button class="cta ghost" type="button">Find Us</button>
+        <div class="visit-card">
+          <h3>Dynamite Smoke, Vape &amp; CBD</h3>
+          <p>Follow the neon for new drops, late-night releases, and weekly promos.</p>
+          <button class="cta ghost" type="button">Follow on Instagram</button>
         </div>
       </section>
     </main>
-
   </body>
 </html>
