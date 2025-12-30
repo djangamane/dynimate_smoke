@@ -390,6 +390,21 @@ body {
   gap: 16px;
 }
 
+.card-media {
+  height: 120px;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(10, 8, 16, 0.7);
+}
+
+.card-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
 .product-card {
   background: var(--panel-strong);
   border-radius: var(--radius-md);
