@@ -262,12 +262,9 @@ body {
   position: relative;
   border-radius: 28px;
   overflow: hidden;
-  background: radial-gradient(circle at 20% 20%, rgba(46, 242, 255, 0.15), transparent 45%),
-    radial-gradient(circle at 80% 30%, rgba(255, 76, 216, 0.18), transparent 50%),
-    #07060d;
+  background: #05050b;
   height: min(60vh, 520px);
   box-shadow: 0 32px 70px rgba(3, 2, 10, 0.8), 0 0 50px rgba(46, 242, 255, 0.2);
-  clip-path: polygon(0 0, 100% 0, 96% 100%, 4% 100%);
 }
 
 .stage-video::before {
@@ -277,7 +274,7 @@ body {
   background: linear-gradient(130deg, rgba(255, 76, 216, 0.12), rgba(46, 242, 255, 0.08), transparent 70%);
   mix-blend-mode: screen;
   pointer-events: none;
-  z-index: 2;
+  display: none;
 }
 
 .stage-video::after {
@@ -293,7 +290,7 @@ body {
   );
   opacity: 0.18;
   pointer-events: none;
-  z-index: 3;
+  display: none;
 }
 
 .hero-video {
@@ -302,7 +299,7 @@ body {
   z-index: 1;
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
   display: block;
   filter: saturate(120%) contrast(108%);
 }
