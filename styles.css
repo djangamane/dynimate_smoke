@@ -31,6 +31,10 @@ body {
   overflow-x: hidden;
 }
 
+body.no-scroll {
+  overflow: hidden;
+}
+
 .bg-video {
   position: fixed;
   inset: 0;
@@ -239,6 +243,86 @@ body {
 
 .hero-spotlight {
   margin-top: 28px;
+}
+
+.age-gate {
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(3, 3, 8, 0.78);
+  backdrop-filter: blur(10px);
+  z-index: 999;
+}
+
+.age-gate.active {
+  display: flex;
+}
+
+.age-card {
+  background: rgba(10, 8, 18, 0.92);
+  border-radius: 22px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  padding: 24px;
+  max-width: 480px;
+  width: 100%;
+  box-shadow: var(--shadow-soft);
+  text-align: center;
+  display: grid;
+  gap: 12px;
+}
+
+.age-kicker {
+  margin: 0;
+  font-size: 0.75rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--neon-cyan);
+}
+
+.age-copy {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.age-check {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-size: 0.95rem;
+  color: var(--text);
+}
+
+.age-check input {
+  accent-color: var(--neon-pink);
+  width: 18px;
+  height: 18px;
+}
+
+.age-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.age-legal {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.age-legal a {
+  color: var(--text);
+  text-decoration: none;
+}
+
+.age-gate.shake .age-card {
+  animation: shake 0.35s ease;
 }
 
 .hero-grid {
@@ -531,6 +615,33 @@ body {
   line-height: 1.5;
 }
 
+.site-footer {
+  margin-top: 36px;
+  padding: 24px;
+  border-radius: var(--radius-lg);
+  background: rgba(11, 10, 20, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  display: grid;
+  gap: 16px;
+}
+
+.legal-block h3 {
+  margin: 0 0 8px;
+  font-size: 1.1rem;
+}
+
+.legal-block p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.legal-note {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
 .reveal {
   opacity: 0;
   transform: translateY(16px);
@@ -548,6 +659,19 @@ body {
 @keyframes smoke-drift {
   to {
     stroke-dashoffset: -360;
+  }
+}
+
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-6px);
+  }
+  75% {
+    transform: translateX(6px);
   }
 }
 

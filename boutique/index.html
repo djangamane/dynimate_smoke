@@ -14,6 +14,27 @@
   </head>
   <body>
     <div class="bg-overlay" aria-hidden="true"></div>
+    <div class="age-gate active" id="ageGate" role="dialog" aria-modal="true" aria-labelledby="ageGateTitle">
+      <div class="age-card">
+        <p class="age-kicker">Adults only</p>
+        <h2 id="ageGateTitle">You must be 21+ to enter</h2>
+        <p class="age-copy">
+          This boutique includes adult-oriented products. Please confirm your age to continue.
+        </p>
+        <label class="age-check" for="ageConfirm">
+          <input id="ageConfirm" type="checkbox" />
+          I am 21 years of age or older.
+        </label>
+        <div class="age-actions">
+          <button class="cta" type="button" id="ageEnter">Enter Site</button>
+          <button class="cta ghost" type="button" id="ageLeave">Leave</button>
+        </div>
+        <p class="age-legal">
+          By entering you agree to our <a href="#privacy">Privacy Policy</a> and
+          <a href="#terms">Terms of Use</a>.
+        </p>
+      </div>
+    </div>
 
     <main class="frame">
       <header class="topbar">
@@ -157,7 +178,24 @@
           <button class="cta ghost" type="button">Find Us</button>
         </div>
       </section>
+      <footer class="site-footer">
+        <div class="legal-block" id="privacy">
+          <h3>Privacy Policy</h3>
+          <p>
+            We collect only what is needed to fulfill orders, manage rewards, and improve the site.
+            We do not sell personal information. Contact us to update or remove your data.
+          </p>
+        </div>
+        <div class="legal-block" id="terms">
+          <h3>Terms of Use</h3>
+          <p>
+            By accessing this site you confirm you are 21+ and agree to use it lawfully. Product
+            availability and pricing may change, and local laws apply.
+          </p>
+        </div>
+        <p class="legal-note">© 2024 Dynamite Boutique. All rights reserved.</p>
+      </footer>
     </main>
-
+    <script src="../script.js"></script>
   </body>
 </html>

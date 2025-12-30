@@ -1,57 +1,37 @@
-const heroImages = [
-  {
-    src: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=80",
-    alt: "Neon smoke portrait",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200&q=80",
-    alt: "Glow shelves with product lighting",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=1200&q=80",
-    alt: "Neon city night scene",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1517423440428-a5a00ad493e8?auto=format&fit=crop&w=1200&q=80",
-    alt: "Studio neon glow portrait",
-  },
-];
+const ageGate = document.getElementById("ageGate");
 
-const heroImageEl = document.querySelector("#heroImage");
-const dots = Array.from(document.querySelectorAll(".dot"));
-let activeIndex = 0;
-let timerId;
+if (ageGate) {
+  const stored = localStorage.getItem("dynamiteAgeVerified");
+  const isVerified = stored === "true";
+  const checkbox = document.getElementById("ageConfirm");
+  const enterBtn = document.getElementById("ageEnter");
+  const leaveBtn = document.getElementById("ageLeave");
 
-const setActiveSlide = (index) => {
-  activeIndex = index % heroImages.length;
-  const { src, alt } = heroImages[activeIndex];
-  heroImageEl.src = src;
-  heroImageEl.alt = alt;
-  dots.forEach((dot, idx) => {
-    dot.classList.toggle("active", idx === activeIndex);
-  });
-};
+  if (isVerified) {
+    ageGate.classList.remove("active");
+    document.body.classList.remove("no-scroll");
+  } else {
+    ageGate.classList.add("active");
+    document.body.classList.add("no-scroll");
+  }
 
-const startRotation = () => {
-  timerId = setInterval(() => {
-    setActiveSlide(activeIndex + 1);
-  }, 5000);
-};
+  if (enterBtn && checkbox) {
+    enterBtn.addEventListener("click", () => {
+      if (!checkbox.checked) {
+        ageGate.classList.add("shake");
+        checkbox.focus();
+        setTimeout(() => ageGate.classList.remove("shake"), 350);
+        return;
+      }
+      localStorage.setItem("dynamiteAgeVerified", "true");
+      ageGate.classList.remove("active");
+      document.body.classList.remove("no-scroll");
+    });
+  }
 
-const resetRotation = () => {
-  clearInterval(timerId);
-  startRotation();
-};
-
-dots.forEach((dot) => {
-  dot.addEventListener("click", () => {
-    const index = Number(dot.dataset.index);
-    if (!Number.isNaN(index)) {
-      setActiveSlide(index);
-      resetRotation();
-    }
-  });
-});
-
-setActiveSlide(0);
-startRotation();
+  if (leaveBtn) {
+    leaveBtn.addEventListener("click", () => {
+      window.location.href = "https://www.google.com";
+    });
+  }
+}
