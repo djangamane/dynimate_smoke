@@ -1,0 +1,123 @@
+.catalog-hero {
+  margin-top: 28px;
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+  gap: 24px;
+  align-items: start;
+}
+
+.catalog-intro {
+  display: grid;
+  gap: 16px;
+}
+
+.catalog-panel {
+  background: rgba(10, 8, 18, 0.8);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 20px;
+  display: grid;
+  gap: 16px;
+  box-shadow: 0 24px 60px rgba(5, 3, 12, 0.7);
+}
+
+.catalog-panel h3 {
+  margin: 0 0 6px;
+}
+
+.catalog-panel p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.carousel-section {
+  margin-top: 34px;
+}
+
+.carousel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.carousel-controls {
+  display: flex;
+  gap: 10px;
+}
+
+.carousel-track {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(260px, 1fr);
+  gap: 18px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 12px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
+}
+
+.carousel-track::-webkit-scrollbar {
+  height: 6px;
+}
+
+.carousel-track::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 999px;
+}
+
+.carousel-item {
+  scroll-snap-align: center;
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(8, 8, 14, 0.9);
+  position: relative;
+  min-height: 320px;
+}
+
+.carousel-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.carousel-caption {
+  position: absolute;
+  left: 16px;
+  bottom: 16px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  background: rgba(8, 8, 16, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.misc-section {
+  margin-top: 36px;
+}
+
+@media (max-width: 980px) {
+  .catalog-hero {
+    grid-template-columns: 1fr;
+  }
+
+  .carousel-track {
+    grid-auto-columns: minmax(220px, 80vw);
+  }
+}
+
+@media (max-width: 640px) {
+  .catalog-panel {
+    padding: 16px;
+  }
+
+  .carousel-item {
+    min-height: 260px;
+  }
+}

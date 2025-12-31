@@ -35,3 +35,28 @@ if (ageGate) {
     });
   }
 }
+
+const carouselTracks = document.querySelectorAll("[data-carousel]");
+
+carouselTracks.forEach((track) => {
+  const wrapper = track.closest("[data-carousel-wrapper]");
+  if (!wrapper) {
+    return;
+  }
+  const prev = wrapper.querySelector("[data-carousel-prev]");
+  const next = wrapper.querySelector("[data-carousel-next]");
+
+  const scrollAmount = () => track.clientWidth * 0.8;
+
+  if (prev) {
+    prev.addEventListener("click", () => {
+      track.scrollBy({ left: -scrollAmount(), behavior: "smooth" });
+    });
+  }
+
+  if (next) {
+    next.addEventListener("click", () => {
+      track.scrollBy({ left: scrollAmount(), behavior: "smooth" });
+    });
+  }
+});

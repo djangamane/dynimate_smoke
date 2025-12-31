@@ -18,6 +18,8 @@ boutique route.
 ## Project structure
 - `index.html` Main landing page.
 - `styles.css` Styles for the main landing page.
+- `products/index.html` Product catalog page.
+- `products/products.css` Catalog-specific styles.
 - `boutique/index.html` Adult boutique route.
 - `boutique.css` Styles for the boutique page.
 - `dynimate_background.mp4` Hero + background video.
