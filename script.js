@@ -45,18 +45,42 @@ carouselTracks.forEach((track) => {
   }
   const prev = wrapper.querySelector("[data-carousel-prev]");
   const next = wrapper.querySelector("[data-carousel-next]");
+  const items = Array.from(track.children);
+  if (!items.length) {
+    return;
+  }
 
-  const scrollAmount = () => track.clientWidth * 0.8;
+  let index = 0;
+
+  const getStep = () => {
+    const itemWidth = items[0].getBoundingClientRect().width;
+    const gap = parseFloat(getComputedStyle(track).gap || "0");
+    return itemWidth + gap;
+  };
+
+  const update = () => {
+    const step = getStep();
+    const visibleCount = Math.max(1, Math.floor(wrapper.clientWidth / step));
+    const maxIndex = Math.max(0, items.length - visibleCount);
+    index = Math.min(Math.max(index, 0), maxIndex);
+    track.style.transform = `translateX(${-index * step}px)`;
+  };
 
   if (prev) {
     prev.addEventListener("click", () => {
-      track.scrollBy({ left: -scrollAmount(), behavior: "smooth" });
+      index -= 1;
+      update();
     });
   }
 
   if (next) {
     next.addEventListener("click", () => {
-      track.scrollBy({ left: scrollAmount(), behavior: "smooth" });
+      index += 1;
+      update();
     });
   }
+
+  window.addEventListener("resize", update);
+  window.addEventListener("load", update);
+  update();
 });
