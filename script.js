@@ -34,12 +34,12 @@ function showIntroVideo() {
 
   introVideo.addEventListener("ended", closeIntroVideo);
 
-  // Fallback: if video doesn't load within 10 seconds, move on
+  // Fallback: if video doesn't load within 30 seconds, move on
   setTimeout(() => {
     if (introOverlay.classList.contains("active") && introVideo.readyState < 3) {
       closeIntroVideo();
     }
-  }, 10000);
+  }, 30000);
 
   introVideo.addEventListener("error", closeIntroVideo);
 }
