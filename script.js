@@ -1,7 +1,60 @@
 const ageGate = document.getElementById("ageGate");
+const introOverlay = document.getElementById("introVideoOverlay");
+const introVideo = document.getElementById("introVideo");
+const introLoading = document.getElementById("introVideoLoading");
+const introSkipBtn = document.getElementById("introSkipBtn");
+
+function showIntroVideo() {
+  if (!introOverlay || !introVideo) {
+    document.body.classList.remove("no-scroll");
+    return;
+  }
+
+  introOverlay.classList.add("active");
+
+  // Fetch video as blob for better performance with large files
+  fetch("SMOKE SHOP VIDEO.mp4")
+    .then((response) => response.blob())
+    .then((blob) => {
+      const blobUrl = URL.createObjectURL(blob);
+      introVideo.src = blobUrl;
+      introVideo.load();
+
+      introVideo.addEventListener("canplay", function onCanPlay() {
+        introVideo.removeEventListener("canplay", onCanPlay);
+        if (introLoading) introLoading.classList.add("hidden");
+        introVideo.play();
+
+        // Show skip button after 2 seconds
+        setTimeout(() => {
+          if (introSkipBtn) introSkipBtn.classList.add("visible");
+        }, 2000);
+      });
+
+      introVideo.addEventListener("ended", closeIntroVideo);
+
+      // Revoke blob URL when done to free memory
+      introVideo.addEventListener("ended", () => URL.revokeObjectURL(blobUrl), { once: true });
+    })
+    .catch(() => {
+      // Fallback: if fetch fails, just close the intro
+      closeIntroVideo();
+    });
+}
+
+function closeIntroVideo() {
+  if (introOverlay) introOverlay.classList.remove("active");
+  if (introVideo) introVideo.pause();
+  document.body.classList.remove("no-scroll");
+}
+
+if (introSkipBtn) {
+  introSkipBtn.addEventListener("click", closeIntroVideo);
+}
 
 if (ageGate) {
   const stored = localStorage.getItem("dynamiteAgeVerified");
+  const introSeen = sessionStorage.getItem("dynamiteIntroSeen");
   const isVerified = stored === "true";
   const checkbox = document.getElementById("ageConfirm");
   const enterBtn = document.getElementById("ageEnter");
@@ -9,7 +62,13 @@ if (ageGate) {
 
   if (isVerified) {
     ageGate.classList.remove("active");
-    document.body.classList.remove("no-scroll");
+    // Show intro video once per session if not already seen
+    if (!introSeen && introOverlay) {
+      showIntroVideo();
+      sessionStorage.setItem("dynamiteIntroSeen", "true");
+    } else {
+      document.body.classList.remove("no-scroll");
+    }
   } else {
     ageGate.classList.add("active");
     document.body.classList.add("no-scroll");
@@ -24,8 +83,9 @@ if (ageGate) {
         return;
       }
       localStorage.setItem("dynamiteAgeVerified", "true");
+      sessionStorage.setItem("dynamiteIntroSeen", "true");
       ageGate.classList.remove("active");
-      document.body.classList.remove("no-scroll");
+      showIntroVideo();
     });
   }
 
