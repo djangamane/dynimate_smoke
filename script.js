@@ -4,74 +4,83 @@ const introVideo = document.getElementById("introVideo");
 const introLoading = document.getElementById("introVideoLoading");
 const introSkipBtn = document.getElementById("introSkipBtn");
 
+// Flow: Intro Video first → Age Consent → Main Site
+
 function showIntroVideo() {
   if (!introOverlay || !introVideo) {
-    document.body.classList.remove("no-scroll");
+    showAgeGate();
     return;
   }
 
   introOverlay.classList.add("active");
+  document.body.classList.add("no-scroll");
 
-  // Fetch video as blob for better performance with large files
-  fetch("https://zsng9zue1usfdu9u.public.blob.vercel-storage.com/SMOKE%20SHOP%20VIDEO.mp4")
-    .then((response) => response.blob())
-    .then((blob) => {
-      const blobUrl = URL.createObjectURL(blob);
-      introVideo.src = blobUrl;
-      introVideo.load();
+  // Set video source directly - let browser stream it
+  introVideo.src = "https://zsng9zue1usfdu9u.public.blob.vercel-storage.com/SMOKE%20SHOP%20VIDEO.mp4";
+  introVideo.load();
 
-      introVideo.addEventListener("canplay", function onCanPlay() {
-        introVideo.removeEventListener("canplay", onCanPlay);
-        if (introLoading) introLoading.classList.add("hidden");
-        introVideo.play();
+  // Show skip button immediately so users aren't stuck
+  if (introSkipBtn) introSkipBtn.classList.add("visible");
 
-        // Show skip button after 2 seconds
-        setTimeout(() => {
-          if (introSkipBtn) introSkipBtn.classList.add("visible");
-        }, 2000);
-      });
-
-      introVideo.addEventListener("ended", closeIntroVideo);
-
-      // Revoke blob URL when done to free memory
-      introVideo.addEventListener("ended", () => URL.revokeObjectURL(blobUrl), { once: true });
-    })
-    .catch(() => {
-      // Fallback: if fetch fails, just close the intro
+  introVideo.addEventListener("canplay", function onCanPlay() {
+    introVideo.removeEventListener("canplay", onCanPlay);
+    if (introLoading) introLoading.classList.add("hidden");
+    introVideo.play().catch(() => {
+      // Autoplay blocked - close intro and show age gate
       closeIntroVideo();
     });
+  });
+
+  introVideo.addEventListener("ended", closeIntroVideo);
+
+  // Fallback: if video doesn't load within 10 seconds, move on
+  setTimeout(() => {
+    if (introOverlay.classList.contains("active") && introVideo.readyState < 3) {
+      closeIntroVideo();
+    }
+  }, 10000);
+
+  introVideo.addEventListener("error", closeIntroVideo);
 }
 
 function closeIntroVideo() {
   if (introOverlay) introOverlay.classList.remove("active");
   if (introVideo) introVideo.pause();
-  document.body.classList.remove("no-scroll");
+  sessionStorage.setItem("dynamiteIntroSeen", "true");
+  showAgeGate();
+}
+
+function showAgeGate() {
+  const isVerified = localStorage.getItem("dynamiteAgeVerified") === "true";
+
+  if (isVerified) {
+    // Already verified, go straight to site
+    if (ageGate) ageGate.classList.remove("active");
+    document.body.classList.remove("no-scroll");
+  } else {
+    // Show age gate
+    if (ageGate) ageGate.classList.add("active");
+    document.body.classList.add("no-scroll");
+  }
 }
 
 if (introSkipBtn) {
   introSkipBtn.addEventListener("click", closeIntroVideo);
 }
 
+// On page load: check if intro was seen this session
 if (ageGate) {
-  const stored = localStorage.getItem("dynamiteAgeVerified");
   const introSeen = sessionStorage.getItem("dynamiteIntroSeen");
-  const isVerified = stored === "true";
   const checkbox = document.getElementById("ageConfirm");
   const enterBtn = document.getElementById("ageEnter");
   const leaveBtn = document.getElementById("ageLeave");
 
-  if (isVerified) {
-    ageGate.classList.remove("active");
-    // Show intro video once per session if not already seen
-    if (!introSeen && introOverlay) {
-      showIntroVideo();
-      sessionStorage.setItem("dynamiteIntroSeen", "true");
-    } else {
-      document.body.classList.remove("no-scroll");
-    }
+  if (!introSeen && introOverlay) {
+    // First visit this session - show intro video first
+    showIntroVideo();
   } else {
-    ageGate.classList.add("active");
-    document.body.classList.add("no-scroll");
+    // Intro already seen - go to age gate check
+    showAgeGate();
   }
 
   if (enterBtn && checkbox) {
@@ -83,9 +92,8 @@ if (ageGate) {
         return;
       }
       localStorage.setItem("dynamiteAgeVerified", "true");
-      sessionStorage.setItem("dynamiteIntroSeen", "true");
       ageGate.classList.remove("active");
-      showIntroVideo();
+      document.body.classList.remove("no-scroll");
     });
   }
 
