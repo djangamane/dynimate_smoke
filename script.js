@@ -13,7 +13,7 @@ function showIntroVideo() {
   introOverlay.classList.add("active");
 
   // Fetch video as blob for better performance with large files
-  fetch("SMOKE SHOP VIDEO.mp4")
+  fetch("https://zsng9zue1usfdu9u.public.blob.vercel-storage.com/SMOKE%20SHOP%20VIDEO.mp4")
     .then((response) => response.blob())
     .then((blob) => {
       const blobUrl = URL.createObjectURL(blob);
