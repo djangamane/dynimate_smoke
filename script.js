@@ -16,6 +16,7 @@ function showIntroVideo() {
   document.body.classList.add("no-scroll");
 
   // Set video source directly - let browser stream it
+  introVideo.muted = true; // Required for autoplay
   introVideo.src = "https://zsng9zue1usfdu9u.public.blob.vercel-storage.com/SMOKE%20SHOP%20VIDEO.mp4";
   introVideo.load();
 
